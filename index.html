@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agensh: Scaling Organizational Intelligence to 1,024 Agents</title>
+<meta name="description" content="Agensh is a scalable self-organized multi-agent harness without a central orchestrator. Scaling from 1 to 1,024 agents on pandoc raises the final test-pass rate from 33.89% to 55.06%.">
+<meta property="og:title" content="Agensh: Scaling Organizational Intelligence to 1,024 Agents">
+<meta property="og:description" content="A self-organized multi-agent harness without a central orchestrator, scaled to 1,024 cooperating agents.">
+<meta property="og:image" content="figures/scaling.svg">
+<style>
+:root {
+  --page:#fbfbf9; --surface:#fff; --ink:#111; --ink-2:#4a4944; --muted:#77756f;
+  --border:rgba(17,17,17,.12); --accent:#256abf; --stage:#0d0d0d;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--page); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); }
+.wrap { width:min(1040px,100%); margin:auto; padding:0 clamp(16px,4vw,32px); }
+header.hero { text-align:center; padding:64px 0 28px; }
+h1 { font-size:clamp(30px,4.6vw,50px); line-height:1.1; letter-spacing:-.03em; margin:0 auto 22px; max-width:900px; }
+h1 .name { color:var(--accent); }
+.authors { font-size:17px; margin:0 0 4px; }
+.authors span { white-space:nowrap; margin:0 .55em; }
+.authors sup { color:var(--muted); font-size:.7em; }
+.affil { color:var(--ink-2); margin:4px 0 2px; }
+.notes { color:var(--muted); font-size:13px; margin:0; }
+.links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:26px 0 0; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:999px;
+  background:#111; color:#fff; text-decoration:none; font-weight:650; font-size:15px; }
+.btn:hover,.btn:focus-visible { background:var(--accent); }
+.btn svg { width:16px; height:16px; fill:currentColor; }
+section { padding:36px 0; }
+h2 { font-size:26px; letter-spacing:-.02em; margin:0 0 14px; text-align:center; }
+.lead { font-size:18px; text-align:center; color:var(--ink-2); max-width:820px; margin:0 auto 28px; }
+/* Three explicit lines on wide screens; the text reflows normally where they would not fit. */
+.lead-3 { width:min(1100px,100vw - 32px); max-width:none; position:relative; left:50%; transform:translateX(-50%);
+  font-size:min(1.5vw,16.5px); }
+@media (max-width:960px) { .lead-3 br { display:none; } .lead-3 { width:auto; max-width:820px; left:auto; transform:none; font-size:17px; } }
+.kpis { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:0 auto 32px; max-width:860px; }
+.kpi { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px; text-align:center; }
+.kpi b { display:block; font-size:30px; letter-spacing:-.03em; line-height:1.15; }
+.kpi span { display:block; color:var(--ink-2); font-size:13px; line-height:1.45; margin-top:4px; }
+figure { margin:0 auto 34px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:clamp(12px,2.4vw,26px); }
+figure img { display:block; width:100%; height:auto; margin:auto; }
+.anim-figure { position:relative; }
+.replay-btn { position:absolute; top:12px; right:12px; z-index:1; border:1px solid var(--border); background:var(--surface);
+  color:var(--ink-2); border-radius:999px; padding:4px 12px; font:inherit; font-size:13px; cursor:pointer; }
+.replay-btn:hover,.replay-btn:focus-visible { color:#fff; background:var(--accent); border-color:var(--accent); }
+figcaption { color:var(--ink-2); font-size:14.5px; margin-top:14px; }
+figcaption b { color:var(--ink); }
+.replay-band { background:var(--stage); color:#fff; }
+#how { padding-top:88px; }
+.replay-frame { position:relative; min-height:100vh; }
+.replay-frame iframe { display:block; width:100%; height:100vh; border:0; background:var(--stage); }
+.replay-placeholder { position:absolute; inset:0; display:grid; place-items:center; color:#98968f; pointer-events:none; }
+.replay-frame.loaded { min-height:0; }
+.replay-frame.loaded .replay-placeholder { display:none; }
+pre { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; overflow:auto; font-size:13px; line-height:1.5; }
+footer { color:var(--muted); font-size:13px; text-align:center; padding:28px 0 40px; }
+footer p { margin:18px 0 0; }
+@media (max-width:640px) { .kpis { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header class="hero wrap" id="top">
+  <h1><span class="name">Agensh</span>: Scaling Organizational Intelligence to 1,024 Agents</h1>
+  <p class="authors">
+    <span>Zhihao Zhan<sup>*</sup></span><span>Ting Song<sup>*</sup></span><span>Li Dong<sup>†</sup></span><span>Shaohan Huang</span><span>Jianxun Lian</span><span>Yan Xia<sup>†</sup></span><span>Furu Wei<sup>†</sup></span>
+  </p>
+  <p class="affil">Microsoft Research</p>
+  <p class="notes"><sup>*</sup>Equal contribution &nbsp; <sup>†</sup>Corresponding authors</p>
+  <nav class="links">
+    <a class="btn" href="https://arxiv.org/abs/2609.26781" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6zm8 1.5V8h4.5zM8 12v1.5h8V12zm0 3v1.5h8V15zm0 3v1.5h5V18z"/></svg>
+      Paper (arXiv:2609.26781)</a>
+    <a class="btn" href="#replay">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      Demo (1,024 agents)</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap" id="intro">
+    <p class="lead lead-3">Agensh is a <b>scalable, self-organized</b> multi-agent harness without a central orchestrator.<br>
+      Concurrent workers gather context, claim sub-tasks, share findings, verify, and merge progress asynchronously<br>
+      through a lightweight agentic organization infrastructure, consisting of a shared workspace, a message interface, and shared context.</p>
+    <div class="kpis">
+      <div class="kpi"><b>1 → 1,024</b><span>agents cooperating<br>on one shared repository</span></div>
+      <div class="kpi"><b>33.89% → 55.06%</b><span>final test pass rate on <code>pandoc</code><br>(6h, no Internet)</span></div>
+      <div class="kpi"><b>+62%</b><span>pass rate relative gain,<br>1 → 1,024 agents on <code>pandoc</code></span></div>
+    </div>
+    <figure class="anim-figure">
+      <button class="replay-btn" id="fig1-replay" type="button" aria-label="Replay Figure 1 animation">↻ Replay</button>
+      <img id="fig1" src="figures/scaling.svg" data-src="figures/scaling-animated.svg" alt="Final test-pass rate on pandoc rising from 33.89% with 1 agent to 55.06% with 1,024 agents, annotated with the cooperation that emerges at each scale: peer coordination, multi-worker integration, standardized workflows, and specialized roles" width="562" height="223">
+      <figcaption><b>Figure 1.</b> Scaling from 1 to 1,024 agents on building <code>pandoc</code> from scratch under a 6h budget without Internet access.
+        Final test-pass rate rises from 33.89% for 1 agent to 55.06% for 1,024 agents. As the organization grows, emergent self-organized
+        cooperation gradually expands from peer coordination to multi-worker integration, standardized workflows, and specialized roles.</figcaption>
+    </figure>
+  </section>
+
+  <section class="replay-band" id="replay">
+    <div class="replay-frame" id="replay-frame">
+      <iframe id="replay-iframe" title="1,024-agent cooperation replay" src="replay.html" allow="fullscreen"></iframe>
+      <div class="replay-placeholder">Loading replay…</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="how">
+    <h2>How Agensh Scales</h2>
+    <figure>
+      <img src="figures/comparison.svg" alt="Left: n workers connected to a central orchestrator. Right: n workers connected through a small lightweight infrastructure node for shared workspace, message interface, and shared context" width="540" height="223" loading="lazy">
+      <figcaption><b>Figure 2.</b> Comparison of multi-agent systems. In previous work, cooperation among agent workers is constrained by the
+        capacity of a central orchestrator. In Agensh, self-organized workers share their state and communicate their progress through the
+        lightweight agentic organization infrastructure.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap" id="results">
+    <h2>Main Results</h2>
+    <p class="lead">With the same model, underlying Copilot harness, and 6h budget, scaling self-organized concurrent workers improves both the final score and the time needed to achieve a given test-pass rate.</p>
+    <figure>
+      <img src="figures/result_1.svg" alt="Final test-pass rates for 1, 8, 32, and 128 agents on FFmpeg, gromacs, pandoc, PHP-src, and ctags" width="425" height="238" loading="lazy">
+      <figcaption><b>Figure 3.</b> Scaling from 1 to 128 agents on the five hardest ProgramBench tasks (<code>FFmpeg</code>, <code>gromacs</code>,
+        <code>pandoc</code>, <code>PHP-src</code>, <code>ctags</code>) under a 6h budget. Mean final test-pass rate rises from 19.31% for 1 agent
+        to 28.78% for 128 agents.</figcaption>
+    </figure>
+    <figure>
+      <img src="figures/result_3.svg" alt="Test-pass rate over the first two hours for 1 to 128 agents on each of the five tasks" loading="lazy">
+      <figcaption><b>Figure 4.</b> Test-pass rates over time with 1 to 128 agents during the first 2h of the 6h runs. Larger organizations
+        generally achieve higher test-pass rates earlier: on <code>pandoc</code>, 128 agents exceed 30% at the 30-minute checkpoint,
+        while 32 and 8 agents first do so at 60 and 90 minutes.</figcaption>
+    </figure>
+  </section>
+</main>
+
+
+<section class="wrap" id="citation">
+  <h2>Citation</h2>
+<pre>@article{zhan2026agensh,
+  title   = {Agensh: Scaling Organizational Intelligence to 1,024 Agents},
+  author  = {Zhan, Zhihao and Song, Ting and Dong, Li and Huang, Shaohan and Lian, Jianxun and Xia, Yan and Wei, Furu},
+  journal = {arXiv preprint arXiv:2609.26781},
+  year    = {2026}
+}</pre>
+</section>
+<footer>
+  <a class="btn" href="#top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 8h-5v8H9v-8H4z"/></svg>
+    Back to top</a>
+  <p>Microsoft Research · <a href="https://arxiv.org/abs/2609.26781">arXiv:2609.26781</a></p>
+</footer>
+
+<script>
+// Run fn once, when el first scrolls into the middle of the viewport.
+const playWhenVisible = (el, fn) => {
+  if (!("IntersectionObserver" in window)) return fn();
+  const io = new IntersectionObserver(entries => {
+    if (entries.some(e => e.isIntersecting)) { io.disconnect(); fn(); }
+  }, { rootMargin: "0px 0px -35% 0px" });
+  io.observe(el);
+};
+(() => {
+  const frame = document.getElementById("replay-frame"), iframe = document.getElementById("replay-iframe");
+  // Fit the iframe to the replay's own height so the page scrolls as one document (same-origin only).
+  const fit = () => {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc || !doc.documentElement) return;
+      // Measure content, not the document (html/body stretch to the frame's own height).
+      const view = doc.defaultView, bottoms = [...doc.body.children].map(el => el.getBoundingClientRect().bottom);
+      const h = Math.ceil(Math.max(0, ...bottoms) + view.scrollY);
+      if (h > 200) iframe.style.height = h + "px";
+    } catch (_) { /* cross-origin (e.g. file://): keep the 100vh scrolling frame */ }
+  };
+  // The replay sits below Figure 1, so it starts when scrolled to; reduced motion leaves it paused.
+  let loaded = false, wanted = false;
+  const start = () => {
+    wanted = true;
+    if (!loaded || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    try { const play = iframe.contentDocument.getElementById("play"); if (play.textContent.includes("Play")) play.click(); } catch (_) {}
+  };
+  const ready = () => {
+    if (loaded) return;
+    loaded = true;
+    frame.classList.add("loaded");
+    fit();
+    try { const ro = new ResizeObserver(fit); [...iframe.contentDocument.body.children].forEach(el => ro.observe(el)); } catch (_) {}
+    if (wanted) start();
+  };
+  iframe.addEventListener("load", ready);
+  try { if (iframe.contentWindow.replayReady) ready(); } catch (_) {}
+  playWhenVisible(document.getElementById("replay-frame"), start);
+})();
+(() => {
+  // Figure 1 is static until it scrolls into view, then plays the generated animation (replayable).
+  const img = document.getElementById("fig1"), button = document.getElementById("fig1-replay");
+  let plays = 0;
+  const play = () => { img.src = img.dataset.src + "?play=" + (++plays); };
+  button.addEventListener("click", play);
+  playWhenVisible(img, play);
+})();
+</script>
+</body>
+</html>

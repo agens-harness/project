@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 561.6 223.2" width="561.6" height="223.2" role="img" aria-label="Final test-pass rate on pandoc rising from 33.89% with 1 agent to 55.06% with 1,024 agents, with emergent self-organized cooperation growing as a staircase">
+<style>
+text { font-family:Helvetica Neue,Helvetica,Arial,sans-serif; }
+.tick { font-size:8px; fill:#52514e; text-anchor:middle; }
+.axis { font-size:8.5px; fill:#52514e; text-anchor:middle; }
+.value { font-size:8.5px; font-weight:700; fill:#12996a; text-anchor:middle;
+  stroke:#fff; stroke-width:2.4px; paint-order:stroke; stroke-linejoin:round; }
+.step-label { font-family:Palatino Linotype,Book Antiqua,Palatino,Georgia,serif; font-size:9px; font-weight:700;
+  fill:#000; text-anchor:middle; }
+.title { font-size:10.5px; font-weight:700; fill:#000; text-anchor:end; }
+.draw { stroke-dasharray:1; animation:draw 0.6s ease-out both; }
+.pop { transform-box:fill-box; transform-origin:center; animation:pop .45s cubic-bezier(.3,1.6,.5,1) both; }
+.rise { transform-box:fill-box; transform-origin:bottom; animation:rise .5s ease-out both; }
+.fade { animation:fade .5s ease-out both; }
+@keyframes draw { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
+@keyframes pop { from { transform:scale(0); opacity:0; } to { transform:scale(1); opacity:1; } }
+@keyframes rise { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+@keyframes fade { from { opacity:0; } to { opacity:1; } }
+@media (prefers-reduced-motion: reduce) { * { animation:none !important; } }
+</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<line x1="48.0" y1="193.5" x2="327.7" y2="193.5" stroke="#c9c8c3" stroke-width="1.02"/>
+<text class="tick" x="35" y="196.3">25</text>
+<line x1="48.0" y1="106.35" x2="327.7" y2="106.35" stroke="#e9e8e4" stroke-width="1.02"/>
+<text class="tick" x="35" y="109.15">45</text>
+<line x1="48.0" y1="19.2" x2="327.7" y2="19.2" stroke="#e9e8e4" stroke-width="1.02"/>
+<text class="tick" x="35" y="22">65</text>
+<line x1="68.9" y1="193.5" x2="68.9" y2="197.8" stroke="#c9c8c3" stroke-width="1.02"/>
+<text class="tick" x="68.9" y="206.5">1</text>
+<line x1="138.2" y1="193.5" x2="138.2" y2="197.8" stroke="#c9c8c3" stroke-width="1.02"/>
+<text class="tick" x="138.2" y="206.5">8</text>
+<line x1="184.4" y1="193.5" x2="184.4" y2="197.8" stroke="#c9c8c3" stroke-width="1.02"/>
+<text class="tick" x="184.4" y="206.5">32</text>
+<line x1="230.5" y1="193.5" x2="230.5" y2="197.8" stroke="#c9c8c3" stroke-width="1.02"/>
+<text class="tick" x="230.5" y="206.5">128</text>
+<line x1="299.8" y1="193.5" x2="299.8" y2="197.8" stroke="#c9c8c3" stroke-width="1.02"/>
+<text class="tick" x="299.8" y="206.5">1,024</text>
+<text class="axis" x="188" y="219.5">Number of agents (log₂ scale)</text>
+<text class="axis" transform="translate(12.5 106.3) rotate(-90)">Pass rate (%)</text>
+<path id="seg-1" class="draw" d="M68.9 154.76L138.2 120.51" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round" style="animation-delay:1.60s"/>
+<path id="seg-2" class="draw" d="M138.2 120.51L184.4 114.59" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round" style="animation-delay:3.40s"/>
+<path id="seg-3" class="draw" d="M184.4 114.59L230.5 80.47" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round" style="animation-delay:5.20s"/>
+<path id="seg-4" class="draw" d="M230.5 80.47L299.8 62.51" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round" style="animation-delay:7.00s"/>
+<mask id="lead-mask-1" maskUnits="userSpaceOnUse" x="0" y="0" width="561.6" height="223.2"><path class="draw" d="M140.4 124.0L175.2 172.0L369.4 171.8" pathLength="1" fill="none" stroke="#fff" stroke-width="4" style="animation-delay:2.50s"/></mask>
+<path id="lead-1" d="M140.4 124.0L175.2 172.0L369.4 171.8" mask="url(#lead-mask-1)" fill="none" stroke="#000" stroke-width=".75" stroke-dasharray=".75 .75"/>
+<rect id="step-1" class="rise" x="344.8" y="158.2" width="213.6" height="27.2" fill="#f8e9a6" stroke="#042433" stroke-width=".75" style="animation-delay:2.90s"/>
+<text id="step-label-1" class="step-label fade" x="451.6" y="175.2" style="animation-delay:3.25s">Peer coordination</text>
+<text id="title" class="title fade" x="557.9" y="60" style="animation-delay:3.25s">Emergent self-organized cooperation</text>
+<mask id="lead-mask-2" maskUnits="userSpaceOnUse" x="0" y="0" width="561.6" height="223.2"><path class="draw" d="M186.5 118.1L205.8 144.6L394.3 144.6" pathLength="1" fill="none" stroke="#fff" stroke-width="4" style="animation-delay:4.30s"/></mask>
+<path id="lead-2" d="M186.5 118.1L205.8 144.6L394.3 144.6" mask="url(#lead-mask-2)" fill="none" stroke="#000" stroke-width=".75" stroke-dasharray=".75 .75"/>
+<rect id="step-2" class="rise" x="370.1" y="131.0" width="188.3" height="27.2" fill="#f5cca0" stroke="#042433" stroke-width=".75" style="animation-delay:4.70s"/>
+<text id="step-label-2" class="step-label fade" x="464.3" y="148.0" style="animation-delay:5.05s">Multi-worker integration</text>
+<mask id="lead-mask-3" maskUnits="userSpaceOnUse" x="0" y="0" width="561.6" height="223.2"><path class="draw" d="M232.9 83.6L257.4 117.3L420.3 117.3" pathLength="1" fill="none" stroke="#fff" stroke-width="4" style="animation-delay:6.10s"/></mask>
+<path id="lead-3" d="M232.9 83.6L257.4 117.3L420.3 117.3" mask="url(#lead-mask-3)" fill="none" stroke="#000" stroke-width=".75" stroke-dasharray=".75 .75"/>
+<rect id="step-3" class="rise" x="395.2" y="103.7" width="163.2" height="27.3" fill="#f0b097" stroke="#042433" stroke-width=".75" style="animation-delay:6.50s"/>
+<text id="step-label-3" class="step-label fade" x="476.9" y="120.7" style="animation-delay:6.85s">Standardized workflows</text>
+<mask id="lead-mask-4" maskUnits="userSpaceOnUse" x="0" y="0" width="561.6" height="223.2"><path class="draw" d="M302.4 65.4L320.2 90.1L445.2 90.1" pathLength="1" fill="none" stroke="#fff" stroke-width="4" style="animation-delay:7.90s"/></mask>
+<path id="lead-4" d="M302.4 65.4L320.2 90.1L445.2 90.1" mask="url(#lead-mask-4)" fill="none" stroke="#000" stroke-width=".75" stroke-dasharray=".75 .75"/>
+<rect id="step-4" class="rise" x="420.5" y="76.5" width="137.9" height="27.2" fill="#e99a96" stroke="#042433" stroke-width=".75" style="animation-delay:8.30s"/>
+<text id="step-label-4" class="step-label fade" x="489.5" y="93.4" style="animation-delay:8.65s">Specialized roles</text>
+<path id="trend" class="fade" d="M68.2 153.9L299 59.8" fill="none" stroke="#12996a" stroke-opacity=".45" stroke-width="1.02" stroke-dasharray="3 2" style="animation-delay:8.90s"/>
+<g id="point-0" class="pop" style="animation-delay:0.40s"><circle cx="68.9" cy="154.76" r="3.5" fill="#12996a" stroke="#fff" stroke-width="1.74"/><text class="value" x="68.9" y="148.0">33.89</text></g>
+<g id="point-1" class="pop" style="animation-delay:2.20s"><circle cx="138.2" cy="120.51" r="3.5" fill="#12996a" stroke="#fff" stroke-width="1.74"/><text class="value" x="138.2" y="113.0">41.75</text></g>
+<g id="point-2" class="pop" style="animation-delay:4.00s"><circle cx="184.4" cy="114.59" r="3.5" fill="#12996a" stroke="#fff" stroke-width="1.74"/><text class="value" x="184.4" y="107.0">43.11</text></g>
+<g id="point-3" class="pop" style="animation-delay:5.80s"><circle cx="230.5" cy="80.47" r="3.5" fill="#12996a" stroke="#fff" stroke-width="1.74"/><text class="value" x="230.5" y="73.0">50.94</text></g>
+<g id="point-4" class="pop" style="animation-delay:7.60s"><circle cx="299.8" cy="62.51" r="3.5" fill="#12996a" stroke="#fff" stroke-width="1.74"/><text class="value" x="299.8" y="55.0">55.06</text></g>
+</svg>
