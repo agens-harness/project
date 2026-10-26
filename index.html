@@ -7,7 +7,7 @@
 <meta name="description" content="Agensh is a scalable self-organized multi-agent harness without a central orchestrator. Scaling from 1 to 1,024 agents on pandoc raises the final test-pass rate from 33.89% to 55.06%.">
 <meta property="og:title" content="Agensh: Scaling Organizational Intelligence to 1,024 Agents">
 <meta property="og:description" content="A self-organized multi-agent harness without a central orchestrator, scaled to 1,024 cooperating agents.">
-<meta property="og:image" content="figures/scaling.svg">
+<meta property="og:image" content="figures/scaling.svg?v=d54d78864b24">
 <style>
 :root {
   --page:#fbfbf9; --surface:#fff; --ink:#111; --ink-2:#4a4944; --muted:#77756f;
@@ -101,10 +101,11 @@ footer p { margin:18px 0 0; }
     </div>
     <figure class="anim-figure">
       <button class="replay-btn" id="fig1-replay" type="button" aria-label="Replay Figure 1 animation">↻ Replay</button>
-      <img id="fig1" src="figures/scaling.svg" data-src="figures/scaling-animated.svg" alt="Final test-pass rate on pandoc rising from 33.89% with 1 agent to 55.06% with 1,024 agents, annotated with the cooperation that emerges at each scale: peer coordination, multi-worker integration, standardized workflows, and specialized roles" width="562" height="223">
-      <figcaption><b>Figure 1.</b> Scaling from 1 to 1,024 agents on building <code>pandoc</code> from scratch under a 6h budget without Internet access.
-        Final test-pass rate rises from 33.89% for 1 agent to 55.06% for 1,024 agents. As the organization grows, emergent self-organized
-        cooperation gradually expands from peer coordination to multi-worker integration, standardized workflows, and specialized roles.</figcaption>
+      <img id="fig1" src="figures/scaling.svg?v=d54d78864b24" data-src="figures/scaling-animated.svg?v=7b6f2049f3f1" alt="Pandoc test-pass rates: GPT-5.6-sol (high) rises from 33.89% with 1 agent to 55.06% with 1,024 agents, alongside emergent peer coordination, multi-worker integration, standardized workflows, and specialized roles. GPT-6.1-sol (high) reaches 56.19%, 71.38%, and 79.59% with 1, 8, and 32 agents." width="562" height="223">
+      <figcaption><b>Figure 1.</b> Scaling from 1 to 1,024 agents on building <code>pandoc</code> from scratch under a 6h budget without Internet access, using GPT-5.6-sol (high).
+        Final test-pass rate rises from 33.89% for 1 agent to 55.06% for 1,024 agents.
+        With the latest GPT-6.1-sol (high), the <code>pandoc</code> test-pass rate rises from 56.19% with 1 agent to 79.59% with 32 agents.
+        As the organization grows, emergent self-organized cooperation gradually expands from peer coordination to multi-worker integration, standardized workflows, and specialized roles.</figcaption>
     </figure>
   </section>
 
@@ -130,13 +131,13 @@ footer p { margin:18px 0 0; }
     <p class="lead">With the same model, underlying Copilot harness, and 6h budget, scaling self-organized concurrent workers improves both the final score and the time needed to achieve a given test-pass rate.</p>
     <figure>
       <img src="figures/result_1.svg" alt="Final test-pass rates for 1, 8, 32, and 128 agents on FFmpeg, gromacs, pandoc, PHP-src, and ctags" width="425" height="238" loading="lazy">
-      <figcaption><b>Figure 3.</b> Scaling from 1 to 128 agents on the five hardest ProgramBench tasks (<code>FFmpeg</code>, <code>gromacs</code>,
+      <figcaption><b>Figure 3.</b> Scaling from 1 to 128 agents with GPT-5.6-sol (high) on the five hardest ProgramBench tasks (<code>FFmpeg</code>, <code>gromacs</code>,
         <code>pandoc</code>, <code>PHP-src</code>, <code>ctags</code>) under a 6h budget. Mean final test-pass rate rises from 19.31% for 1 agent
         to 28.78% for 128 agents.</figcaption>
     </figure>
     <figure>
       <img src="figures/result_3.svg" alt="Test-pass rate over the first two hours for 1 to 128 agents on each of the five tasks" loading="lazy">
-      <figcaption><b>Figure 4.</b> Test-pass rates over time with 1 to 128 agents during the first 2h of the 6h runs. Larger organizations
+      <figcaption><b>Figure 4.</b> Test-pass rates over time with 1 to 128 agents during the first 2h of the 6h runs, using GPT-5.6-sol (high). Larger organizations
         generally achieve higher test-pass rates earlier: on <code>pandoc</code>, 128 agents exceed 30% at the 30-minute checkpoint,
         while 32 and 8 agents first do so at 60 and 90 minutes.</figcaption>
     </figure>
@@ -205,7 +206,11 @@ const playWhenVisible = (el, fn) => {
   // Figure 1 is static until it scrolls into view, then plays the generated animation (replayable).
   const img = document.getElementById("fig1"), button = document.getElementById("fig1-replay");
   let plays = 0;
-  const play = () => { img.src = img.dataset.src + "?play=" + (++plays); };
+  const play = () => {
+    const url = new URL(img.dataset.src, document.baseURI);
+    url.searchParams.set("play", ++plays);
+    img.src = url.href;
+  };
   button.addEventListener("click", play);
   playWhenVisible(img, play);
 })();
