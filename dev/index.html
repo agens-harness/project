@@ -104,9 +104,9 @@ footer p { margin:18px 0 0; }
       <button class="replay-btn" id="fig1-replay" type="button" aria-label="Replay Figure 1 animation">↻ Replay</button>
       <img id="fig1" src="figures/scaling.svg" data-src="figures/scaling-animated.svg" alt="Pandoc test-pass rates: GPT-5.6-sol (high) rises from 33.89% with 1 agent to 55.06% with 1,024 agents, alongside emergent peer coordination, multi-worker integration, standardized workflows, and specialized roles. GPT-6.1-sol (high) reaches 56.19%, 71.38%, and 79.59% with 1, 8, and 32 agents." width="562" height="223">
       <figcaption><b>Figure 1.</b> Scaling from 1 to 1,024 agents on building <code>pandoc</code> from scratch under a 6h budget without Internet access, using GPT-5.6-sol (high).
-        Final test-pass rate rises from 33.89% for 1 agent to 55.06% for 1,024 agents. As the organization grows, emergent self-organized
-        cooperation gradually expands from peer coordination to multi-worker integration, standardized workflows, and specialized roles.
-        With the latest GPT-6.1-sol (high), the Pandoc test-pass rate rises from 56.19% with 1 agent to 79.59% with 32 agents.</figcaption>
+        Final test-pass rate rises from 33.89% for 1 agent to 55.06% for 1,024 agents.
+        With the latest GPT-6.1-sol (high), the <code>pandoc</code> test-pass rate rises from 56.19% with 1 agent to 79.59% with 32 agents.
+        As the organization grows, emergent self-organized cooperation gradually expands from peer coordination to multi-worker integration, standardized workflows, and specialized roles.</figcaption>
     </figure>
   </section>
 
@@ -123,7 +123,7 @@ footer p { margin:18px 0 0; }
       <img src="../figures/comparison.svg" alt="Left: n workers connected to a central orchestrator. Right: n workers connected through a small lightweight infrastructure node for shared workspace, message interface, and shared context" width="540" height="223" loading="lazy">
       <figcaption><b>Figure 2.</b> Comparison of multi-agent systems. In previous work, cooperation among agent workers is constrained by the
         capacity of a central orchestrator. In Agensh, self-organized workers share their state and communicate their progress through the
-        lightweight agentic organization infrastructure. The original Agensh experiments used GPT-5.6-sol (high).</figcaption>
+        lightweight agentic organization infrastructure.</figcaption>
     </figure>
   </section>
 
@@ -132,8 +132,8 @@ footer p { margin:18px 0 0; }
     <p class="lead">With the same model, underlying Copilot harness, and 6h budget, scaling self-organized concurrent workers improves both the final score and the time needed to achieve a given test-pass rate.</p>
     <figure>
       <img src="../figures/result_1.svg" alt="Final test-pass rates for 1, 8, 32, and 128 agents on FFmpeg, gromacs, pandoc, PHP-src, and ctags" width="425" height="238" loading="lazy">
-      <figcaption><b>Figure 3.</b> Scaling from 1 to 128 agents on the five hardest ProgramBench tasks (<code>FFmpeg</code>, <code>gromacs</code>,
-        <code>pandoc</code>, <code>PHP-src</code>, <code>ctags</code>) under a 6h budget, using GPT-5.6-sol (high). Mean final test-pass rate rises from 19.31% for 1 agent
+      <figcaption><b>Figure 3.</b> Scaling from 1 to 128 agents with GPT-5.6-sol (high) on the five hardest ProgramBench tasks (<code>FFmpeg</code>, <code>gromacs</code>,
+        <code>pandoc</code>, <code>PHP-src</code>, <code>ctags</code>) under a 6h budget. Mean final test-pass rate rises from 19.31% for 1 agent
         to 28.78% for 128 agents.</figcaption>
     </figure>
     <figure>

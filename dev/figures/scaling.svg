@@ -33,7 +33,7 @@ text { font-family:Helvetica Neue,Helvetica,Arial,sans-serif; }
 <line x1="299.8" y1="193.5" x2="299.8" y2="197.8" stroke="#c9c8c3" stroke-width="1.02"/>
 <text class="tick" x="299.8" y="206.5">1,024</text>
 <text class="axis" x="188" y="219.5">Number of agents (log₂ scale)</text>
-<text class="axis" transform="translate(12.5 106.3) rotate(-90)">Pass rate (%)</text>
+<text class="axis" transform="translate(12.5 106.3) rotate(-90)">Pandoc pass rate (%)</text>
 <path id="seg-1" d="M68.9 167.67L138.2 144.84" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round"/>
 <path id="seg-2" d="M138.2 144.84L184.4 140.89" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round"/>
 <path id="seg-3" d="M184.4 140.89L230.5 118.14" pathLength="1" fill="none" stroke="#12996a" stroke-width="1.74" stroke-linecap="round"/>
