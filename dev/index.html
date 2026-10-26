@@ -8,7 +8,7 @@
 <meta name="description" content="Agensh is a scalable self-organized multi-agent harness without a central orchestrator. Scaling from 1 to 1,024 agents on pandoc raises the final test-pass rate from 33.89% to 55.06%.">
 <meta property="og:title" content="Agensh: Scaling Organizational Intelligence to 1,024 Agents">
 <meta property="og:description" content="A self-organized multi-agent harness without a central orchestrator, scaled to 1,024 cooperating agents.">
-<meta property="og:image" content="figures/scaling.svg">
+<meta property="og:image" content="figures/scaling.svg?v=d54d78864b24">
 <style>
 :root {
   --page:#fbfbf9; --surface:#fff; --ink:#111; --ink-2:#4a4944; --muted:#77756f;
@@ -102,7 +102,7 @@ footer p { margin:18px 0 0; }
     </div>
     <figure class="anim-figure">
       <button class="replay-btn" id="fig1-replay" type="button" aria-label="Replay Figure 1 animation">↻ Replay</button>
-      <img id="fig1" src="figures/scaling.svg" data-src="figures/scaling-animated.svg" alt="Pandoc test-pass rates: GPT-5.6-sol (high) rises from 33.89% with 1 agent to 55.06% with 1,024 agents, alongside emergent peer coordination, multi-worker integration, standardized workflows, and specialized roles. GPT-6.1-sol (high) reaches 56.19%, 71.38%, and 79.59% with 1, 8, and 32 agents." width="562" height="223">
+      <img id="fig1" src="figures/scaling.svg?v=d54d78864b24" data-src="figures/scaling-animated.svg?v=7b6f2049f3f1" alt="Pandoc test-pass rates: GPT-5.6-sol (high) rises from 33.89% with 1 agent to 55.06% with 1,024 agents, alongside emergent peer coordination, multi-worker integration, standardized workflows, and specialized roles. GPT-6.1-sol (high) reaches 56.19%, 71.38%, and 79.59% with 1, 8, and 32 agents." width="562" height="223">
       <figcaption><b>Figure 1.</b> Scaling from 1 to 1,024 agents on building <code>pandoc</code> from scratch under a 6h budget without Internet access, using GPT-5.6-sol (high).
         Final test-pass rate rises from 33.89% for 1 agent to 55.06% for 1,024 agents.
         With the latest GPT-6.1-sol (high), the <code>pandoc</code> test-pass rate rises from 56.19% with 1 agent to 79.59% with 32 agents.
@@ -207,7 +207,11 @@ const playWhenVisible = (el, fn) => {
   // Figure 1 is static until it scrolls into view, then plays the generated animation (replayable).
   const img = document.getElementById("fig1"), button = document.getElementById("fig1-replay");
   let plays = 0;
-  const play = () => { img.src = img.dataset.src + "?play=" + (++plays); };
+  const play = () => {
+    const url = new URL(img.dataset.src, document.baseURI);
+    url.searchParams.set("play", ++plays);
+    img.src = url.href;
+  };
   button.addEventListener("click", play);
   playWhenVisible(img, play);
 })();
